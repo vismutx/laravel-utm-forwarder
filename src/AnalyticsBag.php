@@ -4,6 +4,7 @@ namespace Spatie\AnalyticsTracker;
 
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Http\Request;
+use Spatie\AnalyticsTracker\Sources\RequestParameter;
 
 class AnalyticsBag
 {
@@ -43,5 +44,32 @@ class AnalyticsBag
             })
             ->filter()
             ->toArray();
+    }
+
+    public function cleanRequestQuery(Request $request)
+    {
+        foreach ($this->trackedParameters as $trackedParameter) {
+            if($trackedParameter['source'] == RequestParameter::class){
+                $request->request->remove($trackedParameter['key']);
+            }
+        }
+    }
+
+    public function cleanIntended()
+    {
+        $url = $this->session->get('url.intended');
+        if(!$url){
+            return;
+        }
+        if(!$this->get()){
+            return;
+        }
+        foreach ($this->get() as $key => $item) {
+            $url = str_replace($key . '=' . $item, '', $url);
+        }
+        $url = str_replace('&&', '', $url);
+//        dd($url);
+
+        $this->session->put('url.intended', $url);
     }
 }

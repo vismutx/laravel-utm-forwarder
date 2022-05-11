@@ -18,6 +18,7 @@ class TrackAnalyticsParametersMiddleware
     public function handle(Request $request, Closure $next)
     {
         $this->analyticsBag->putFromRequest($request);
+        $this->analyticsBag->cleanIntended();
 
         return $next($request);
     }
