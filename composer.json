@@ -1,5 +1,5 @@
 {
-    "name": "vismutx/laravel-analytics-tracker",
+    "name": "vismutx/laravel-utm-forwarder",
     "description": "Keeps track of the original UTM parameters",
     "keywords": [
         "spatie",
