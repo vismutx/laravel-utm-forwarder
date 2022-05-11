@@ -26,6 +26,10 @@ class AnalyticsBag
     {
         $parameters = $this->determineFromRequest($request);
 
+        if(!count($parameters)){
+            return;
+        }
+
         $this->session->put($this->sessionKey, $parameters);
     }
 
@@ -61,10 +65,11 @@ class AnalyticsBag
         if(!$url){
             return;
         }
-        if(!$this->get()){
+        $parameters = $this->get();
+        if(!count($parameters)){
             return;
         }
-        foreach ($this->get() as $key => $item) {
+        foreach ($parameters as $key => $item) {
             $url = str_replace($key . '=' . $item, '', $url);
         }
         $url = str_replace('&&', '', $url);
