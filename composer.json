@@ -1,11 +1,11 @@
 {
-    "name": "spatie/laravel-analytics-tracker",
+    "name": "vismutx/laravel-analytics-tracker",
     "description": "Keeps track of the original UTM parameters",
     "keywords": [
         "spatie",
         "laravel-utm-forwarder"
     ],
-    "homepage": "https://github.com/spatie/laravel-utm-forwarder",
+    "homepage": "https://github.com/vismutx/laravel-utm-forwarder",
     "license": "MIT",
     "authors": [
         {
